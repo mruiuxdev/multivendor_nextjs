@@ -1,5 +1,3 @@
-"use client";
-
 import { ModeToggle } from "@/components/shared/theme-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserButton } from "@clerk/nextjs";

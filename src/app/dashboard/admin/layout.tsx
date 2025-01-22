@@ -11,11 +11,12 @@ export default async function AdminDashboardLayout({
   children: ReactNode;
 }) {
   const user = await currentUser();
-  if (!user || user?.privateMetadata?.role !== "ADMIN") redirect("/");
+  const isAdmin = user?.privateMetadata?.role === "ADMIN";
+  if (!user || !isAdmin) redirect("/");
 
   return (
     <SidebarProvider>
-      <DashboardSidebar />
+      <DashboardSidebar isAdmin={isAdmin} />
       <main className="w-full">
         <DashboardHeader />
         {children}

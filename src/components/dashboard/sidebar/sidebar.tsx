@@ -1,12 +1,8 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-} from "@/components/ui/sidebar";
-import { FC } from "react";
+import { Sidebar, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
+import { adminDashboardSidebarOptions } from "@/constants/data";
 import { currentUser } from "@clerk/nextjs/server";
-import { Logo } from "@/components/shared/logo";
+import { FC } from "react";
+import SidebarNavAdmin from "./nav-admin";
 import UserInfo from "./user-info";
 
 interface SidebarProps {
@@ -23,8 +19,10 @@ export const DashboardSidebar: FC<SidebarProps> = async ({ isAdmin }) => {
           <UserInfo user={user} />
         </div>
       </SidebarHeader>
-      <SidebarContent></SidebarContent>
-      <SidebarFooter>Footer here</SidebarFooter>
+      {isAdmin && <SidebarNavAdmin menuLinks={adminDashboardSidebarOptions} />}
+      <SidebarFooter className="text-center">
+        <small>Copyright © {new Date().getFullYear()}</small>
+      </SidebarFooter>
     </Sidebar>
   );
 };
